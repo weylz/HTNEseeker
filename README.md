@@ -14,6 +14,18 @@ Usage
 ```shell
 cd ~
 git clone https://github.com/weylz/HTNEseeker.git
+
+cd HTNEseeker
+mkdir -p ./data/reference && mv blacklist.bed ./data/reference && mv hg19.chrom.sizes ./data/reference
+mkdir -p ./data/brca && mv $bwfiles ./data/brca
+mkdir -p ./data/sj/brca && mv $SJfiles ./data/sj/brca
+
+chmod 744 HTNE
+chmod 744 ./bin/*
+
+./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
+
+# e.g. ./HTNEseeker.sh brca 10 20
 ```
 
 Folder structure

@@ -34,7 +34,7 @@ $ mkdir -p ./data/reference && mv blacklist.bed ./data/reference && mv hg19.chro
 $ mkdir -p ./data/brca && mv $bwfiles ./data/brca
 $ mkdir -p ./data/sj/brca && mv $SJfiles ./data/sj/brca
 
-$ chmod 744 HTNE
+$ chmod 744 ./HTNEseeker.sh
 $ chmod 744 ./bin/*
 
 $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime

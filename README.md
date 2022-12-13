@@ -16,7 +16,7 @@
 
 1. Python 3.7 or later; 
 2. R 4.0 or later;
-3. The BEDTools suite 2.30.0;
+3. BEDTools suite 2.30.0 or later;
 4. Jim Kent's executable programms: http://hgdownload.cse.ucsc.edu/admin/exe/;
 
 

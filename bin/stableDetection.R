@@ -16,6 +16,6 @@ cpm_res <- processStream(df$y, cpmType = "GLR")
 # cpm_res$x[cpm_res$changePoints]
 file.copy(
     paste0("RepeatedTrial/HTNE.specific_",
-        cpm_res$changePoints,
+        cpm_res$changePoints[1],
         ".bed"),
     "../HTNE_brca.bed", overwrite = TRUE)

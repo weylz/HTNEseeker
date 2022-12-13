@@ -8,7 +8,7 @@
 ----------
 
 # HTNEseeker
- A framework for the identification of highly transcribed noncoding element (HTNE)
+A framework for the identification of highly transcribed noncoding element (HTNE)
 
 ## Requirement
 
@@ -42,6 +42,6 @@ $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
 ```
 
 ## License
-   ...
+...
 
 **HTNEseeker © weylz 2022. All rights reserved.**

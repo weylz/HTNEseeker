@@ -38,7 +38,7 @@ $ chmod 744 ./HTNEseeker.sh
 $ chmod 744 ./bin/*
 
 $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
-# ./HTNEseeker.sh brca 7 15
+# ./HTNEseeker.sh brca 7 30
 ```
 
 ## License

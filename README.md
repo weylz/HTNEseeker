@@ -27,7 +27,7 @@
 ```shell
 $ cd ~
 $ git clone https://github.com/weylz/HTNEseeker.git
-$ wget http://bioinfo.seu.edu.cn/data/HTNE/test_data.zip
+$ wget http://bioinfo.seu.edu.cn/data/HTNE/test_data.zip # or use test_data folder 
 
 $ cd HTNEseeker
 $ mkdir -p ./data/reference && mv blacklist.bed ./data/reference && mv hg19.chrom.sizes ./data/reference

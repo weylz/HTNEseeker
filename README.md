@@ -42,6 +42,6 @@ $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
 ```
 
 ## License
-None
+   ...
 
 **HTNEseeker © weylz 2022. All rights reserved.**

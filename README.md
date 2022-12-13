@@ -30,9 +30,9 @@ $ git clone https://github.com/weylz/HTNEseeker.git
 $ wget http://bioinfo.seu.edu.cn/data/HTNE/test_data.zip # or use test_data folder 
 
 $ cd HTNEseeker
-$ mkdir -p ./data/reference && mv blacklist.bed ./data/reference && mv hg19.chrom.sizes ./data/reference
-$ mkdir -p ./data/brca && mv $bwfiles ./data/brca
-$ mkdir -p ./data/sj/brca && mv $SJfiles ./data/sj/brca
+$ mkdir -p ./data/reference && mv ./test_data/blacklist.bed ./data/reference && mv ./test_data/hg19.chrom.sizes ./data/reference
+$ mkdir -p ./data/brca && mv ./test_data/$bwfiles ./data/brca
+$ mkdir -p ./data/sj/brca && mv ./test_data/$SJfiles ./data/sj/brca
 
 $ chmod 744 ./HTNEseeker.sh
 $ chmod 744 ./bin/*

@@ -16,7 +16,7 @@
 
 1. Python 3.7 or later; 
 2. R 4.0 or later;
-3. The BEDTools suite 2.30.0 or later;
+3. The BEDTools suite 2.30.0;
 4. Jim Kent's executable programms: http://hgdownload.cse.ucsc.edu/admin/exe/;
 
 
@@ -38,7 +38,7 @@ $ chmod 744 ./HTNEseeker.sh
 $ chmod 744 ./bin/*
 
 $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
-# ./HTNEseeker.sh brca 10 20
+# ./HTNEseeker.sh brca 7 15
 ```
 
 ## License

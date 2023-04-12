@@ -4,7 +4,7 @@
 - [HTNEseeker](#htneseeker)
   - [Requirement](#requirement)
   - [Usage](#usage)
-  - [License](#license)
+  - [Cite](#cite)
 ----------
 
 # HTNEseeker

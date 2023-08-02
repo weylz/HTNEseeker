@@ -9,7 +9,7 @@
 ----------
 
 # HTNEseeker
-<font face = "Times New Roman" size = 4> **A framework for the identification of highly transcribed noncoding element (HTNE)** </font>
+<font face = "Times New Roman" size = 5> **A framework for the identification of highly transcribed noncoding element (HTNE)** </font>
 
 ## Requirement
 

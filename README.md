@@ -4,7 +4,7 @@
 - [HTNEseeker](#htneseeker)
   - [Requirement](#requirement)
   - [Usage](#usage)
-  - [License](#license)
+  - [Cite](#cite)
 ----------
 
 # HTNEseeker
@@ -45,7 +45,7 @@ $ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
 # ./HTNEseeker.sh brca 7 30
 ```
 
-## License
+## Cite
 ...
 
-**HTNEseeker © weylz 2022. All rights reserved.**
+**HTNEseeker © weylz 2023. All rights reserved.**

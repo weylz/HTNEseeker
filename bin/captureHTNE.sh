@@ -23,7 +23,7 @@ Options:
     -G   --group_label=...      The label for samples group 
     -B   --mergedbedGraph=...   The bedGraph file of merged samples 
     -C   --chrom_size=...       genome chromosome sizes 
-    -E   --blacklist=...        Bed file for exclusion region 
+    -E   --blocklist=...        Bed file for exclusion region 
     -L   --list_bw_file=...     Tab-delimited file with two columns: sample ID and the path of bigwig file 
     -N   --length_min=...       minimal length of transcribed noncoding elements (default: 100)
     -S   --splicing_site=...    BED file for splicing site +/-10bp ($splicing_site)
@@ -40,7 +40,7 @@ while getopts 'G:B:C:E:L:N:S:-H' OPTION; do
         G ) group_label="$OPTARG"    ;;
         B ) mergedbedGraph="$OPTARG" ;;
         C ) chrom_size="$OPTARG"     ;;
-        E ) blacklist="$OPTARG"      ;;
+        E ) blocklist="$OPTARG"      ;;
         L ) list_bw_file="$OPTARG"   ;;
         N ) length_min="$OPTARG"     ;;
         S ) splicing_site="$OPTARG"  ;;
@@ -55,7 +55,7 @@ while getopts 'G:B:C:E:L:N:S:-H' OPTION; do
                 --group_label     ) group_label="$OPTARG"    ;;
                 --mergedbedGraph  ) mergedbedGraph="$OPTARG" ;;
                 --chrom_size      ) chrom_size="$OPTARG"     ;;
-                --blacklist       ) blacklist="$OPTARG"   ;;
+                --blocklist       ) blocklist="$OPTARG"   ;;
                 --list_bw_file    ) list_bw_file="$OPTARG"   ;;
                 --length_max      ) length_max="$OPTARG"     ;;
                 --length_min      ) length_min="$OPTARG"     ;;
@@ -71,7 +71,7 @@ done
 
 # group_label
 [ -z "$group_label" ] && echo -e "\n>>>>>>>> Invalid Syntax [missing required sample(s)] <<<<<<<<" && _usage && exit $?
-[ -z "$blacklist" ] && blacklist=~/HTNEseeker/data/reference/blacklist.bed
+[ -z "$blocklist" ] && blocklist=~/HTNEseeker/data/reference/blocklist.bed
 [ -z "$length_min" ] && length_min=100
 [ -z "$chrom_size" ] && chrom_size=~/HTNEseeker/data/reference/hg19.chrom.sizes
 [ -z "$mergedbedGraph" ] && mergedbedGraph=trimmedmean.uniq.normalized.$group_label.bedGraph
@@ -83,7 +83,7 @@ cd $group_label
 #Exit if HTNE.bed already exists
 [ -e HTNE.bed ] && echo "File HTNE.bed already exists. Exit!" && exit $?
 
-echo -e "==================================================\n===============  HTNEseeker START!  ===============\n==================================================\n["`date`"]\nOptions:\n\tSample Group: $group_label\n\tblacklist File (.bed): $blacklist\n\tChromosome Size File (hg19/hg38): $chrom_size\n\tMinimum Length: $length_min\n\tSplicing Junction Sites File: $splicing_site\n"
+echo -e "==================================================\n===============  HTNEseeker START!  ===============\n==================================================\n["`date`"]\nOptions:\n\tSample Group: $group_label\n\tblocklist File (.bed): $blocklist\n\tChromosome Size File (hg19/hg38): $chrom_size\n\tMinimum Length: $length_min\n\tSplicing Junction Sites File: $splicing_site\n"
 
 echo "["`date`"] measuring transcriptional noise in background genomic regions ..."
 # if not exist, then move sample file & generate $group_label.bigwig.list
@@ -130,7 +130,7 @@ fi
 # ============================================================= -seed -l -n
 # RNAseq signal distribution in the background region
 echo "["`date`"] measuring RNAseq signal distribution in the background region ..."
-[ -e transcriptional.noise.rpm.txt ] || bedtools random -seed 3 -g $chrom_size -l 1 -n 1000000 | sortBed | intersectBed -a - -b $blacklist -v -sorted | intersectBed -a $mergedbedGraph -b - -sorted -u | cut -f4 > transcriptional.noise.rpm.txt
+[ -e transcriptional.noise.rpm.txt ] || bedtools random -seed 3 -g $chrom_size -l 1 -n 1000000 | sortBed | intersectBed -a - -b $blocklist -v -sorted | intersectBed -a $mergedbedGraph -b - -sorted -u | cut -f4 > transcriptional.noise.rpm.txt
 ~/HTNEseeker/bin/fitRTS.R transcriptional.noise.rpm.txt
 distp=`tail -n1 transcriptional.noise.rpm.pvalues.txt`  # distribution
 
@@ -145,8 +145,8 @@ echo -e "\tSignificiant Level of RPM = $distp"
 awk -v D=$distp '{OFS="\t"; if($4>=D) print $1,$2,$3,$4}' HTNE.tmp1 | mergeBed -d $length_min -c 4 -o max > HTNE.tmp2
 
 echo "["`date`"] no overlap with any known transcibed regions ..."
-# bedtools subtract -a HTNE.tmp2 -b $blacklist -f 0.5 > HTNE.tmp3
-bedtools subtract -a HTNE.tmp2 -b $blacklist > HTNE.tmp3
+# bedtools subtract -a HTNE.tmp2 -b $blocklist -f 0.5 > HTNE.tmp3
+bedtools subtract -a HTNE.tmp2 -b $blocklist > HTNE.tmp3
 
 echo "["`date`"] at least "$length_min"bp in length ..."
 awk -v len_min=$length_min '{OFS="\t"; if(($3-$2)>=len_min) print $1,$2,$3,$1"_"$2"_"$3}' HTNE.tmp3 > HTNE.tmp4
@@ -159,7 +159,7 @@ echo "["`date`"] bonferroni and FDR corrected p<=0.05 ..."
 echo -e "\t** creating random background regions and calculating their signals ...\n\t\tProcessing ...\n"
 while read sample bigwigFile
 do
-    bedtools shuffle -seed 123 -excl $blacklist -i HTNE.tmp5 -noOverlapping -g $chrom_size | awk -v OFS="\t" '$4=$1"_"$2"_"$3' | bigWigAverageOverBed $bigwigFile stdin stdout | cut -f1,5 > $bigwigFile.randomBackground
+    bedtools shuffle -seed 123 -excl $blocklist -i HTNE.tmp5 -noOverlapping -g $chrom_size | awk -v OFS="\t" '$4=$1"_"$2"_"$3' | bigWigAverageOverBed $bigwigFile stdin stdout | cut -f1,5 > $bigwigFile.randomBackground
     bigWigAverageOverBed $bigwigFile HTNE.tmp5 stdout | cut -f1,5 | sort -k1,1 > $bigwigFile.HTNE.meanRPM
 done < $list_bw_file
 # 2.compute p-value for each HTNE candidate in each sample's random background, then test the number of samples with p<0.05 with the binomial test, adjust p-value from binomial test with bonferroni and FDR correction

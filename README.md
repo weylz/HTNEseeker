@@ -50,8 +50,8 @@ $ ./bin/captureHTNE.sh --help
   #     -N   --length_min=...       minimal length of transcribed noncoding elements (default: 100)
   #     -S   --splicing_site=...    BED file for splicing site +/-10bp ()
 
-$ ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
-# ./HTNEseeker.sh brca 7 30
+# ./HTNEseeker.sh $sampleName $sampleNumber $cycleTime
+$ ./HTNEseeker.sh brca 7 30
 ```
 
 ## Citation

@@ -30,7 +30,7 @@ $ cd ~
 $ git clone https://github.com/weylz/HTNEseeker.git
 
 $ cd HTNEseeker
-$ wget http://bioinfo.seu.edu.cn/data/HTNE/test_data.zip && unzip test_data.zip
+$ unzip test_data.zip
 $ mkdir -p ./data/reference && mv ./test_data/blocklist.bed ./data/reference && mv ./test_data/hg19.chrom.sizes ./data/reference
 $ mkdir -p ./data/brca && mv ./test_data/*.bw ./data/brca
 $ mkdir -p ./data/sj/brca && mv ./test_data/*_SJ.out.tab ./data/sj/brca

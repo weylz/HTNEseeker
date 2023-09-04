@@ -30,10 +30,10 @@ $ cd ~
 $ git clone https://github.com/weylz/HTNEseeker.git
 
 $ cd HTNEseeker
-$ unzip test_data.zip
-$ mkdir -p ./data/reference && mv ./test_data/blocklist.bed ./data/reference && mv ./test_data/hg19.chrom.sizes ./data/reference
-$ mkdir -p ./data/brca && mv ./test_data/*.bw ./data/brca
-$ mkdir -p ./data/sj/brca && mv ./test_data/*_SJ.out.tab ./data/sj/brca
+$ cd test && unzip '*.zip' && cd ..
+$ mkdir -p ./data/reference && mv ./test/blocklist.bed ./data/reference && mv ./test_data/hg19.chrom.sizes ./data/reference
+$ mkdir -p ./data/brca && mv ./test/*.bw ./data/brca
+$ mkdir -p ./data/sj/brca && mv ./test/*_SJ.out.tab ./data/sj/brca
 
 $ chmod 744 ./*.sh ./bin/*
 

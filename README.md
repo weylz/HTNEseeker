@@ -55,6 +55,6 @@ $ ./HTNEseeker.sh brca 7 30
 ```
 
 ## Citation
-<font face = "Times New Roman" size = 3> [Wenyong Zhu et al. Delineating highly transcribed noncoding elements landscape in breast cancer. *Computational and Structural Biotechnology Journal*. 2023;21:4432-4445] (https://doi.org/10.1016/j.csbj.2023.09.009) </font>
+<font face = "Times New Roman" size = 3> [Wenyong Zhu et al. Delineating highly transcribed noncoding elements landscape in breast cancer. *Computational and Structural Biotechnology Journal*. 2023;21:4432-4445](https://doi.org/10.1016/j.csbj.2023.09.009) </font>
 
 <font face = "Times New Roman" size = 2> ***Copyright © 2023 Wenyong Zhu et al. All Rights Reserved.*** </font>
